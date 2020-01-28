@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+	
+<h:body style = "background-color : red">
+	<h1>Novo Produto</h1>
+	<h:form>
+		<fieldset>
+			<legend>Dados do Produto</legend>
+			<h:panelGrid>
+				<h:outputText value="Nome" for="nome" />
+				<h:inputText id="nome" value="#{produtoController.produto.nome}" />
+				<h:outputText value="Valor" for="valor" />
+				<h:inputText id="valor" value="#{produtoController.produto.valor}" />
+				<h:outputText value="Tamanho" for="tamanho" />
+				<h:inputText id="tamanho" value="#{produtoController.produto.tamanho}" />	
+				
+		<h:outputText value="Selecione um tipo" for ="tipo"/>
+		<h:selectOneMenu id="tipo" value="#{produtoController.tipoId}" required="true" requiredMessage="Tipo Obrigatorio">
+		<f:selectItem itemLabel = "Selecionar" noSelectionOption="true"/>
+		 <f:selectItems value ="#{produtoController.todosTipos}" var = "tipo" itemLabel="#{tipo.tipo}"
+		 itemValue="#{tipo.id}"/>
+		</h:selectOneMenu>					
+			</h:panelGrid>
+		</fieldset>
+
+		<fieldset>
+			<legend>Ingredientes</legend>
+			<h:panelGrid columns="3">
+				<h:outputText value="Ingrediente" for="ingrediente" />
+				
+				<h:selectOneMenu id="ingrediente" value="#{produtoController.ingId}">
+					<f:selectItem itemLabel="Selecionar" noSelectionOption="true" />
+					<f:selectItems value="#{produtoController.todosIngredientes}" var="ingrediente" itemLabel="#{ingrediente.nome}" itemValue="#{ingrediente.id}" />
+				</h:selectOneMenu>
+
+				<h:commandButton value="Colocar Ingrediente"  action ="#{produtoController.gravarIngrediente}"/>
+				
+				
+				<h:dataTable value = "#{produtoController.ingredientesProduto}" var = "ingrediente">
+				
+				<h:column>
+				<f:facet name="header">Nome</f:facet>
+			    <h:outputText value="#{ingrediente.nome}"/>
+			    </h:column>
+			    <f:facet name="header">Remover</f:facet>
+			    <h:column>
+				<h:commandLink value="x" action="#{produtoController.remover(ingrediente)}"/>
+				</h:column>
+				</h:dataTable>
+			</h:panelGrid>
+			
+			
+		</fieldset>
+		
+		<h:commandButton value="Gravar" action="#{produtoController.gravar}" />
+	</h:form>
+	<h:form>
+	<h:dataTable value="#{produtoController.todosProdutos}" var="produto">
+			<h:column>
+				<f:facet name="header">Nome</f:facet>
+				<h:outputText value="#{produto.nome}"/>
+			</h:column>
+			<h:column>
+				<f:facet name="header">Alterar</f:facet>
+				<h:commandLink value="altera" action="#{produtoController.carregar(produto)}"/>
+			</h:column>
+			<h:column>
+				<f:facet name="header">Remover</f:facet>
+				<h:commandLink value="remove" action="#{produtoController.remover(produto)}"/>
+			</h:column>
+		</h:dataTable>
+		</h:form>
+	</h:body>
+	</html>
+	

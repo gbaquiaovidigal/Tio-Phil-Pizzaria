@@ -1,0 +1,119 @@
+<?xml version="1.0"?>
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+	>
+	
+<ui:composition template="_template3.xhtml">
+
+	<ui:define name="titulo">
+		<title>Tio Phil Delivery - Endereços</title>
+	</ui:define>
+	
+	<ui:define name="conteudo">
+		    
+		    <div class="container">
+		      
+			      <div class="page-header">
+			     	<BR />
+			        <h1>Inserir Novo Endereço</h1>
+			      </div>
+			
+			      <h:form>
+	             			
+	             			<div class="form-group">
+					                <h:outputText value="Logradouro" for="rua"/>
+					              	<h:inputText id="rua"  class="form-control" value="#{pessoaController.end.rua}"
+					                  	pt:placeholder="Ex.: Rua Marquês do Paraná" pt:required=""/>
+				             
+					                <h:outputText value="Número" for="numero"/>
+					              	<h:inputText id="numero"  class="form-control" value="#{pessoaController.end.numero}"
+					                  pt:required=""/>
+				             
+					                <h:outputText value="Bairro" for="bairro"/>
+					             	<h:inputText id="bairro"  class="form-control" value="#{pessoaController.end.bairro}"
+					                  pt:placeholder="Ex.: Vila Diamantina" pt:required=""/>
+				            
+					                <h:outputText value="Referência" for="referencia"/>
+					              	<h:inputText id="referencia"  class="form-control" value="#{pessoaController.end.referencia}"
+					                  pt:placeholder="Ex.: Ao lado do Bar do Lu"/>
+				             
+					                <h:outputText value="Cidade" for="cidade"/>
+					              	<h:inputText id="cidade"  class="form-control" value="#{pessoaController.end.cidade}"
+					                  	pt:placeholder="Ex.: Jacuí" pt:required=""/>
+				             
+					                <h:outputText value="CEP" for="cep"/>
+					              	<h:inputText id="cep"  class="form-control" value="#{pessoaController.end.cep}"
+					                  pt:placeholder="Ex.: 37965-000" pt:required=""/>
+					                 
+					               <br/>
+					               <h:commandButton type="submit" class="btn btn-success btn-block" value="Cadastrar Endereço" 
+					               			action="#{pessoaController.addEndereco}"/>
+			               
+				             </div> 
+			              
+			      </h:form>
+	   
+			      <div class="page-header"></div>  <!-- Traço -->
+			
+			     <h2>Endereços Cadastrados:</h2>
+				 
+					<div class="row">
+						<div class="col">
+						<h:form>
+							
+							<h:dataTable  style="background-color: #F2F5A9" class="table table-striped" 
+									value = "#{pessoaController.todosEnderecos }" var="end">
+						
+						    <h:column>
+							    <f:facet name="header">Logradouro</f:facet>
+							    <h:outputText value="#{end.rua}"/>
+						    </h:column>
+						    
+						    <h:column>
+							    <f:facet name="header">Numero</f:facet>
+							    <h:outputText value="#{end.numero}"/>
+						    </h:column>
+						    
+						    <h:column>
+							    <f:facet name="header">CEP</f:facet>
+							    <h:outputText value="#{end.cep}"/>
+						    </h:column>
+						    
+						    <h:column>
+							    <f:facet name="header">Alterar</f:facet>
+							    <h:commandButton type="submit" class="btn btn-success btn-sm" value="Alterar Endereço" 
+							    			action="#">
+						        </h:commandButton>
+						   	</h:column>
+			
+						    <h:column>
+							    <f:facet name="header">Remover</f:facet>
+							    <h:commandButton type="submit" class="btn btn-danger btn-sm" value="Remover Endereço" 
+							    			action="#{pessoaController.removeEndereco(end)}">
+						        </h:commandButton>
+						    </h:column>
+						    
+						    </h:dataTable>
+							
+							
+							
+						 </h:form>
+						</div>
+					</div>
+			 </div>
+		
+		    
+	</ui:define>
+	
+
+
+</ui:composition>	    
+		  
+</html>
+

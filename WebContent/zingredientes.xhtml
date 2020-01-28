@@ -1,0 +1,80 @@
+<?xml version="1.0"?>
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+	>
+	
+	<ui:composition template="_template2.xhtml">
+
+	<ui:define name="titulo">
+		<title>Tio Phil Delivery - Pedido</title>
+	</ui:define>
+	
+	<ui:define name="conteudo">
+
+		<div class="container">
+		      
+		      <div class="page-header">
+		        <h1>Inserir Ingredientes</h1>
+		      </div>
+		
+		      <h:form>
+		              
+		              <div class="form-group">         
+              			<h:outputText value="Ingrediente" for="ingrediente"/>
+             			<h:inputText id="nome" class="form-control" value="#{ingredientesController.ingrediente.nome}" pt:required=""/>
+				        <h:commandButton type="submit" class="btn btn-success btn-block" value="Cadastrar Ingrediente" action="#{ingredientesController.inserir}"/>
+		              </div>
+		              
+		      </h:form>
+   
+		
+		      <div class="page-header"></div>  <!-- Traço -->
+		
+		     <h2>Ingredientes Cadastrados:</h2>
+			 
+				<div class="row">
+					<div class="col">
+					<h:form>
+						<h:dataTable  style="background-color: #F2F5A9" class="table table-striped" value = "#{ingredientesController.todosIngredientes}" var="ingrediente">
+						
+						    <h:column>
+						    <f:facet name="header">Nome </f:facet>
+						    <h:outputText value="#{ingrediente.nome}"/>
+						    </h:column>
+			
+			
+						    <h:column>
+						    <f:facet name="header">Alterar</f:facet>
+						    <h:commandButton type="submit" class="btn btn-success btn-sm" value="Alterar Ingrediente" 
+						    			action="#{ingredientesController.carregar(ingrediente)}">
+					        </h:commandButton>
+						   	</h:column>
+			
+						    <h:column>
+						    <f:facet name="header">Remover</f:facet>
+						    <h:commandButton type="submit" class="btn btn-danger btn-sm" value="Remover Ingrediente" 
+						    			action="#{ingredientesController.remover(ingrediente)}">
+					        </h:commandButton>
+						    </h:column>
+					    	   
+					    
+					    </h:dataTable>
+					    </h:form>
+					</div>
+				</div>
+			 </div>
+		
+		    <br/>
+		    
+		    
+	</ui:define>
+		
+	</ui:composition>	    
+		  
+</html>

@@ -1,0 +1,215 @@
+<?xml version="1.0"?>
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+	>
+	
+	<ui:composition template="_template2.xhtml">
+
+		<ui:define name="titulo">
+			<title>Tio Phil Delivery</title>
+		</ui:define>
+		
+		<ui:define name="conteudo">
+	      <div class="container">
+	      
+	        <div class="page-header">
+	          <br></br>
+	          <h1>Minha conta</h1>
+	          <h:messages id ="msg" class="fonteSansHelvetica"/>
+	        </div>
+	
+	        <div class="row fonteSansHelvetica">
+	          <div class="col-sm-8" style="background-color: #BCF5A9">
+	            <h1>Cadastre-se</h1>
+	            
+	            <h:form>
+	              
+			              <div class="form-group">
+			                	<h:outputText value="Login" for="login"/>
+			              		<h:inputText id="login"  class="form-control" value="#{pessoaController.pessoa.login}"
+				                   	required="true" requiredMessage="Login obrigatório">
+				                  	<f:ajax event ="blur" render = "msg"/>
+			                  	</h:inputText>
+			             </div>
+			             
+			              <div class="form-group">
+				                <h:outputText value="Senha" for="senha"/>
+				              	<h:inputText id="senha"  class="form-control" value="#{pessoaController.pessoa.senha}"
+				              		pt:type="password" pt:placeholder="Máximo 25 caracteres" pt:maxlength="25"
+			                   		required="true" requiredMessage="Senha obrigatório">
+			                  		<f:ajax event ="blur" render = "msg"/>
+			                  	</h:inputText>
+			              </div>
+			             
+			             <div class="form-group">
+				                <h:outputText value="Nome" for="nome"/>
+				              	<h:inputText id="nome"  class="form-control" value="#{pessoaController.pessoa.nome}"
+					                   required="true" requiredMessage="Nome obrigatório">
+					                   <f:ajax event ="blur" render = "msg"/>
+				                 </h:inputText>
+			             </div>
+			              
+		
+			            <div class="form-group">
+			             <h:outputText value="CPF" for="cpf"/>
+							<h:inputText id="cpf" value="#{pessoaController.pessoa.cpf}" validatorMessage="Entre com um CPF valido." class="form-control">
+							<f:validateRegex pattern="([0-9]{2}[\.]?[0-9]{3}[\.]?[0-9]{3}[\/]?[0-9]{4}[-]?[0-9]{2})|([0-9]{3}[\.]?[0-9]{3}[\.]?[0-9]{3}[-]?[0-9]{2})"/>
+							<f:ajax event="blur" render="msg"/>
+						</h:inputText>
+					  </div>
+						
+						
+						
+			             <div class="form-group">
+			               <h:outputText value="Telefone" for="telefone"/>
+			              <h:inputText id="telefone"  class="form-control" value="#{pessoaController.pessoa.telefone}" validatorMessage="Entre com um numero de telefone ou celular valido." pt:required="true" >
+			              <f:validateRegex pattern="^(\(11\) [9][0-9]{4}-[0-9]{4})|(\(1[2-9]\) [5-9][0-9]{3}-[0-9]{4})|(\([2-9][1-9]\) [5-9][0-9]{3}-[0-9]{4})$"/>
+			              <f:ajax event="blur" render="msg"/>
+			              </h:inputText>
+			                  
+			             </div>
+			              
+			              <!--
+			              <div class="form-group">
+			                <h:outputText value="Data de Nascimento" for="datanasc"/>
+			              <h:inputText id="datanasc"  class="form-control" value="#{bean.datanasc}"
+			                  pt:type="date" pt:required=""/>
+			             </div>
+			              -->
+	
+			       		 <div class="form-group">
+				                <h:outputText value="Logradouro" for="rua"/>
+				              	<h:inputText id="rua"  class="form-control" value="#{pessoaController.end.rua}"
+				                  	pt:placeholder="Ex.: Rua Marquês do Paraná" pt:required=""/>
+			             </div>
+			             
+			             <div class="form-group">
+				                <h:outputText value="Número" for="numero"/>
+				              	<h:inputText id="numero"  class="form-control" value="#{pessoaController.end.numero}"
+				                  pt:required=""/>
+			             </div>
+			             
+			             <div class="form-group">
+				                <h:outputText value="Bairro" for="bairro"/>
+				             	<h:inputText id="bairro"  class="form-control" value="#{pessoaController.end.bairro}"
+				                  pt:placeholder="Ex.: Vila Diamantina" pt:required=""/>
+			             </div>
+			              
+			             <div class="form-group">
+				                <h:outputText value="Referência" for="referencia"/>
+				              	<h:inputText id="referencia"  class="form-control" value="#{pessoaController.end.referencia}"
+				                  pt:placeholder="Ex.: Ao lado do Bar do Lu"/>
+			             </div>
+			             
+			             <div class="form-group">
+				                <h:outputText value="Cidade" for="cidade"/>
+				              	<h:inputText id="cidade"  class="form-control" value="#{pessoaController.end.cidade}"
+				                  	pt:placeholder="Ex.: Jacuí" pt:required=""/>
+			             </div>
+			             
+			             
+			             <div class="form-group">
+				                <h:outputText value="Estado" for="estado"/>
+				              	<h:inputText id="estado"  class="form-control" value="#{pessoaController.end.estado}"
+				                  	pt:placeholder="Ex.: Minas Gerais" pt:required=""/>
+			             </div>
+			             
+			         
+							           
+				          <div class="form-group">
+				                <h:outputText value="CEP" for="cep"/>
+				              <h:inputText id="cep"  value="#{pessoaController.end.cep}" validatorMessage="Insira um CEP valido." class="form-control">
+				                  pt:placeholder="Ex.: 37965-000" pt:required="">
+				              <f:validateRegex pattern="^\d{5}[-]?\d{3}$"/>
+				              <f:ajax event="blur" render="msg"/>
+				              </h:inputText>
+				          </div>
+			             
+			             <div class="form-group">
+				                <h:outputText value="E-mail" for="email"/>
+				              	<h:inputText id="email"  class="form-control" value="#{pessoaController.pessoa.email}"
+				                  pt:type="email" pt:placeholder="Ex.: contato@tiophil.com" pt:required=""/>
+			             </div>
+			              
+			              <!-- 
+			              <div class="form-group">
+			                <h:outputText value="Confirme sua Senha" for="csenha"/>
+			              <h:inputText id="csenha"  class="form-control" value="#{bean.senha}"
+			                  pt:type="password" pt:placeholder="Máximo 25 caracteres" pt:maxlength="25" pt:required=""/>
+			              </div>
+			               -->
+			
+				        <!-- 
+				        <div class="radio">  
+				                  <h:outputText value="Sexo"/>
+				          <h:selectOneMenu class="form-control" >
+				            <f:selectItem itemValue="Masculino"/>
+				            <f:selectItem itemValue="Feminino"/>
+				          </h:selectOneMenu>
+				        </div>
+				         -->
+			         
+				        <!-- 
+				        <div class="checkbox">
+				                  <h:label>
+				                      <h:input type="checkbox"/> Aceito os termos do serviço.
+				                  </h:label>
+		                </div> -->
+			              
+		              <h:commandButton type="submit" class="btn btn-success btn-block" value="Cadastrar" action="#{pessoaController.inserir}"/>
+					  <br/>
+	            </h:form>
+			
+	          </div>
+			
+	          <div class="col-sm-4" style="background-color: #A9E2F3">
+		            <h1><font color ="#fff">Entrar</font></h1>
+	  
+					<h:form >
+						<div class="form-group">
+							<font color ="#fff"><h:outputLabel value="Login" for="login"/></font>
+							<h:inputText id="login" 
+							value="#{loginController.user.login}" 
+							required="true" requiredMessage="Login obrigatório."
+							class="form-control"/>
+							<h:message for="login"/>
+						</div>
+						
+						<div class="form-group">
+							<font color ="#fff"><h:outputLabel value="Senha" for="senha"/></font>
+							<h:inputText id="senha" 
+							value="#{loginController.user.senha}" 
+							required="true" requiredMessage="Senha obrigatória."
+							class="form-control">
+								<f:passThroughAttribute name="type" value="password"/>
+							</h:inputText>
+							<h:message for="senha"/>
+						</div>
+						
+						<h:commandButton value="Login" class="btn btn-primary btn-block"
+						action="#{loginController.logar}" />
+						
+						 
+					</h:form>		
+			
+			        <br/><br/><br/>
+			        <div align="center"><img src="img/logo.jpg" style="width: 300px" class="w3-circle"/></div>
+			        <br/>
+			            
+			      </div>
+			
+			  </div>
+	
+	    </div> 
+	
+	    </ui:define>
+		
+	</ui:composition>	    
+		  
+</html>

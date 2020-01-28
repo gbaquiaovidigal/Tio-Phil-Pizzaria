@@ -1,0 +1,94 @@
+<?xml version="1.0"?>
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+	>
+	
+	<ui:composition template="_template2.xhtml">
+
+		<ui:define name="titulo">
+			<title>Tio Phil Delivery</title>
+		</ui:define>
+		
+		<ui:define name="conteudo">
+      
+
+        <div class="container">
+        
+          <div class="page-header">
+            <br></br>
+            <h1 class="w3-center w3-jumbo">Cardápio</h1>
+          </div>
+
+          <div class="row fonteSansHelvetica">
+            <div class="col-sm-12">
+            <h1 style="background-color: #DBA901; text-align: center">Pizzas</h1>
+            <h:dataTable style="background-color: #8A0808" class="table table-striped" value="#{produtoController.todasPizzas}" var="produto">
+				
+			    <h:column>
+			    <f:facet name="header"><font color ="#FFFFFF">Nome</font> </f:facet>
+			    <font color ="#DBA901">
+			    		<h:outputText value="#{produto.nome}"/>
+			    </font>
+			    </h:column> 
+			    
+			    <h:column>
+			    <f:facet name="header"><font color ="#FFFFFF">Valor</font> </f:facet>
+			    <font color ="#DBA901">
+			    		<h:outputText value="R$ #{produto.valor}0"/>
+			    </font>
+			    </h:column>	
+			    
+			    <h:column>
+			    <f:facet name="header"><font color ="#FFFFFF">Valor</font> </f:facet>
+			    <font color ="#DBA901">
+			    		<h:outputText value="#{produto.tamanho}"/>
+			    </font>
+			    </h:column>	      
+			    
+			    </h:dataTable>
+            </div>
+          </div>
+
+          <div class="row fonteSansHelvetica">
+            <div class="col-sm-12">
+            <h1 style="background-color: #DBA901; text-align: center">Refrigerantes</h1>
+            <h:dataTable style="background-color: #8A0808" class="table table-striped" value="#{produtoController.todosRefri}" var="produto">
+            
+            			    <h:column>
+			    <f:facet name="header"><font color ="#FFFFFF">Nome</font> </f:facet>
+			    <font color ="#DBA901">
+			    		<h:outputText value="#{produto.nome}"/>
+			    </font>
+			    </h:column> 
+			    
+			    <h:column>
+			    <f:facet name="header"><font color ="#FFFFFF">Valor</font> </f:facet>
+			    <font color ="#DBA901">
+			    		<h:outputText value="R$ #{produto.valor}0"/>
+			    </font>
+			    </h:column>	
+			    
+			    <h:column>
+			    <f:facet name="header"><font color ="#FFFFFF">Valor</font> </f:facet>
+			    <font color ="#DBA901">
+			    		<h:outputText value="#{produto.tamanho}"/>
+			    </font>
+			    </h:column>	      
+			    
+			    </h:dataTable>
+            </div>
+          </div>
+
+      </div> 
+
+      </ui:define>
+		
+	</ui:composition>	    
+		  
+</html>

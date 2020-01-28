@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<h:body>
+	<h1>Novo Pedido</h1>
+	<h:form>
+	
+	  
+	       
+			
+		
+
+		
+	
+	<fieldset>
+	 <h:messages id ="messages"/>
+			<legend>Pedido</legend>
+			<h:panelGrid>
+				<h:outputText value="Data" for="data" />
+				<h:inputText id="data" value="#{pedidoController.pedido.data.time}">
+					<f:convertDateTime pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo" />
+				</h:inputText>
+				
+				<h:outputText value="Endereços" for="end" />
+				<h:selectOneMenu id="end" value="#{pedidoController.endId}">
+					<f:selectItem itemLabel="Selecionar" noSelectionOption="true"/>
+					<f:selectItems value="#{pedidoController.todosEnderecos}" var="end" itemLabel="#{end.rua}" itemValue="#{end.id}"/>
+				</h:selectOneMenu>
+			
+			</h:panelGrid>
+		</fieldset>
+
+		<fieldset>
+			<legend>Dados do Pedido</legend>
+
+			<h:panelGrid columns="5">
+			
+				<h:outputText value="Itens do Pedido" for="pizza" />
+				<h:selectOneMenu id="pizza" value="#{pedidoController.produtoId}">
+					<f:selectItem itemLabel="Selecionar" noSelectionOption="true"/>
+					<f:selectItems value="#{pedidoController.todosProdutos}" var="pizza" itemLabel="#{pizza.nome}" itemValue="#{pizza.id}"/>
+				</h:selectOneMenu>
+				
+
+				
+				<h:outputText value="Quantidade" for="qtde" />
+				<h:inputText id="qtde" value="#{pedidoController.qtde}"/>
+				
+				<h:commandButton value="Gravar Item" action="#{pedidoController.gravarItem}"/>
+			</h:panelGrid>
+			
+			
+			
+			<h:dataTable value="#{pedidoController.itensDoPedido}" var="produto">
+				<h:column>
+					<f:facet name="header">Nome</f:facet>
+					<h:outputText value="#{produto.produto.nome}"/>
+				</h:column>
+						
+				<h:column>
+					<f:facet name="header">Valor Unitário</f:facet>
+					<h:outputText value="#{produto.valor}"/>
+				</h:column>
+							
+				<h:column>
+					<f:facet name="header">Quantidade</f:facet>
+					<h:outputText id="qtde" value="#{produto.qtde}" />
+				</h:column>
+						
+				<h:column>
+					<f:facet name="header">Remover</f:facet>
+					<h:commandLink value="X" action="#{pedidoController.removerItem(produto)}"/>
+				</h:column>
+			</h:dataTable>
+			
+			<h:panelGrid columns="2">
+					<h:outputText value="Valor Total" for="total"/>
+					<h:outputText id="total" value="#{pedidoController.pedido.valorTotal}"/>
+			</h:panelGrid>
+				
+			<h:commandButton value="Gravar" action="#{pedidoController.gravar}" />
+		</fieldset>
+	</h:form>
+	
+	<h:form>
+		<h:dataTable value="#{pedidoController.todosPedidos}" var="pedido">
+		
+		
+			<h:column>
+				<f:facet name="header">Cliente</f:facet>
+				<h:outputText value="#{pedido.pessoa.nome}"/>
+			</h:column>
+			
+			<h:column>
+				<f:facet name="header">Rua</f:facet>
+				<h:outputText value="#{pedido.end.rua}"/>
+			</h:column>
+			
+			
+			<h:column>
+				<f:facet name="header">Bairro</f:facet>
+				<h:outputText value="#{pedido.end.bairro}"/>
+			</h:column>
+			
+			
+			<h:column>
+				<f:facet name="header">Numero</f:facet>
+				<h:outputText value="#{pedido.end.numero}"/>
+			</h:column>
+			
+			<h:column>
+				<f:facet name="header">Data</f:facet>
+				<h:outputText value="#{pedido.data.time}">
+					<f:convertDateTime pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo" />
+				</h:outputText>
+			</h:column>
+						
+			<h:column>
+				<f:facet name="header">Valor</f:facet>
+				<h:outputText value="#{pedido.valor}"/>
+			</h:column>
+			
+			<h:column>
+				<f:facet name="header">Alterar</f:facet>
+				<h:commandLink value="altera" action="#{pedidoController.carregar(pedido)}"/>
+			</h:column>
+			
+			<h:column>
+			<f:facet name="header">Remover</f:facet>
+				<h:commandLink value="remove" action="#{pedidoController.remover(pedido)}"/>
+			</h:column>
+			
+		</h:dataTable>
+		</h:form>
+		
+		
+		
+		
+		
+</h:body>
+</html>

@@ -1,0 +1,72 @@
+<?xml version="1.0"?>
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+	>
+	
+<ui:composition template="_template2.xhtml">
+
+	<ui:define name="titulo">
+		<title>Tio Phil Delivery - Tipos</title>
+	</ui:define>
+	
+	<ui:define name="conteudo">
+	
+		 	<div class="container">
+	
+		        <h1>Novo Tipo</h1>
+		         <h:messages id ="messages"/>
+			    <h:form>
+					<fieldset>
+						<legend>Informações</legend>
+							 <div class="form-group">
+								<h:outputText value="Tipo: " for ="tipo"/>
+								<h:inputText id="tipo" class="form-control" value="#{tipoController.tipo.tipo}"
+									pt:required=""/>
+							 </div>
+							 <h:commandButton type="submit" class="btn btn-success btn-block" value="Cadastrar Tipo" action="#{tipoController.gravar}"/>
+				  
+					</fieldset>
+			    </h:form>
+			    
+			    <div class="page-header"></div>  <!-- Traço -->
+			    
+			    <h2>Tipos Cadastrados:</h2>
+			  	<div class="row">
+					<div class="col">
+			    
+					    <h:form>
+						    <h:dataTable  style="background-color: #9FF781" class="table table-striped" value="#{tipoController.todosTipos}" var="tipo">
+								
+								<h:column>
+								    <f:facet name="header">Id</f:facet>
+								    <h:outputText value="00#{tipo.id}"/>
+							    </h:column>
+								
+							    <h:column>
+								    <f:facet name="header">Nome </f:facet>
+								    <h:outputText value="#{tipo.tipo}"/>
+							    </h:column>
+							    
+							    <h:column>
+								    <f:facet name="header">Remover </f:facet>
+								    <h:commandButton type="submit" class="btn btn-danger btn-sm" value="Remover Ingrediente" action="#{tipoController.remover(tipo)}"/>
+							    </h:column>
+						    
+						    </h:dataTable>
+					    </h:form> 
+					  </div>
+					</div> 
+		    
+		   	</div>
+			<br/>
+		    
+		</ui:define>
+	
+	</ui:composition>		    
+</html>

@@ -1,0 +1,42 @@
+body, html {height: 100%}
+ 
+*{
+  clear: all;
+}
+
+form{
+  font-family: Arial, Helvetica, sans-serif
+}
+
+.fonteSansHelvetica{
+   font-family: Arial, Helvetica, sans-serif
+}
+  
+.cor-cardapio{
+  /*background-color: #8A2908;*/
+  background-color: #BCF5A9; 
+  /*background-color: #8A0808; */        
+}
+
+.rodape{
+  text-align: center;
+  padding: 10px;
+}
+
+
+
+#Id_minha-conta{
+  background-color: #F2F2F2;
+  /*background-image: url(img/pizza1.jpg);*/
+}
+
+#Id_cadastrar{
+  /*float: left;*/
+  background-color: #2E64FE;
+  padding: 10px 20px;
+  margin-top: 10px;
+}
+
+
+
+

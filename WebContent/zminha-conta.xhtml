@@ -1,0 +1,152 @@
+<?xml version="1.0"?>
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+	
+	
+	<ui:composition template="_template2.xhtml">
+
+		<ui:define name="titulo">
+			<title>Tio Phil Delivery</title>
+		</ui:define>
+		
+		<ui:define name="conteudo">
+	      <div class="container">
+	      
+	        <div class="page-header">
+	          <br></br>
+	          <h1>Minha conta</h1>
+	          <h:messages id ="msg" class="fonteSansHelvetica"/>
+	        </div>
+	
+	        <div class="row fonteSansHelvetica">
+	          <div class="col-sm-8" style="background-color: #BCF5A9">
+	            <h1>Meus Dados</h1>
+	            
+	            <h:form>
+	           <h:dataTable  style="background-color: #F2F5A9" class="table table-striped" columns="1" 
+									value = "#{pessoaController.user}" var="user">
+	              			<h:column>
+							    <f:facet name="header">Nome</f:facet>
+							    <h:outputText value="#{user.nome}"/>
+						    </h:column>
+						    
+						    <h:column>
+							    <f:facet name="header">CPF</f:facet>
+							    <h:outputText value="#{user.cpf}"/>
+						    </h:column>
+						    
+						    <h:column>
+							    <f:facet name="header">Login</f:facet>
+							    <h:outputText value="#{user.login}"/>
+						    </h:column>
+						    
+						    <h:column>
+							    <f:facet name="header">Senha</f:facet>
+							    <h:outputText value="#{user.senha}"/>
+						    </h:column>
+						    
+						    <h:column>
+							    <f:facet name="header">Telefone</f:facet>
+							    <h:outputText value="#{user.telefone}"/>
+						    </h:column>
+						    
+						    
+						   <h:column>
+							    <f:facet name="header">Alterar</f:facet>
+							    <h:commandButton type="submit" class="btn btn-success btn-sm" value="Alterar Dados" 
+							    			action="#{pessoaController.atualizaPessoa()}">
+						        </h:commandButton>
+						   	</h:column>
+						    
+
+			             
+			             
+			             
+			             		             
+					  <br/>
+				</h:dataTable>
+				
+				</h:form>
+				
+	            <h:panelGroup rendered="#{pessoaController.mostrar()}"> 
+	            <h1>Alterar Dados</h1>
+	            <h:form >
+	              
+			              <div class="form-group">
+			                	<h:outputText value="Login" for="login"/>
+			              		<h:inputText id="login"  class="form-control" value="#{pessoaController.pessoa.login}"
+				                   	required="true" requiredMessage="Login obrigatório">
+				                  	<f:ajax event ="blur" render = "msg"/>
+			                  	</h:inputText>
+			             </div>
+			             
+			              <div class="form-group">
+				                <h:outputText value="Senha" for="senha"/>
+				              	<h:inputText id="senha"  class="form-control" value="#{pessoaController.pessoa.senha}"
+				              		pt:type="password" pt:placeholder="Máximo 25 caracteres" pt:maxlength="25"
+			                   		required="true" requiredMessage="Senha obrigatório">
+			                  		<f:ajax event ="blur" render = "msg"/>
+			                  	</h:inputText>
+			              </div>
+			             
+			             <div class="form-group">
+				                <h:outputText value="Nome" for="nome"/>
+				              	<h:inputText id="nome"  class="form-control" value="#{pessoaController.pessoa.nome}"
+					                   required="true" requiredMessage="Nome obrigatório">
+					                   <f:ajax event ="blur" render = "msg"/>
+				                 </h:inputText>
+			             </div>
+			              
+		
+			            <div class="form-group">
+			             <h:outputText value="CPF" for="cpf"/>
+							<h:inputText id="cpf" value="#{pessoaController.pessoa.cpf}" validatorMessage="Entre com um CPF valido." class="form-control">
+							<f:validateRegex pattern="([0-9]{2}[\.]?[0-9]{3}[\.]?[0-9]{3}[\/]?[0-9]{4}[-]?[0-9]{2})|([0-9]{3}[\.]?[0-9]{3}[\.]?[0-9]{3}[-]?[0-9]{2})"/>
+							<f:ajax event="blur" render="msg"/>
+						</h:inputText>
+					  </div>
+						
+						
+						
+			             <div class="form-group">
+			               <h:outputText value="Telefone" for="telefone"/>
+			              <h:inputText id="telefone"  class="form-control" value="#{pessoaController.pessoa.telefone}" validatorMessage="Entre com um numero de telefone ou celular valido." pt:required="true" >
+			              <f:validateRegex pattern="^(\(11\) [9][0-9]{4}-[0-9]{4})|(\(1[2-9]\) [5-9][0-9]{3}-[0-9]{4})|(\([2-9][1-9]\) [5-9][0-9]{3}-[0-9]{4})$"/>
+			              <f:ajax event="blur" render="msg"/>
+			              </h:inputText>
+			                  
+			             </div>
+			              
+			              <!--
+			              <div class="form-group">
+			                <h:outputText value="Data de Nascimento" for="datanasc"/>
+			              <h:inputText id="datanasc"  class="form-control" value="#{bean.datanasc}"
+			                  pt:type="date" pt:required=""/>
+			             </div>
+			              -->	
+			              
+			    <h:commandButton type="submit" class="btn btn-success btn-block" value="Alterar" action="#{pessoaController.alterar}"/>            
+	            </h:form>
+	            </h:panelGroup>
+			
+	          </div>
+			
+
+			            
+			      </div>
+			
+			  </div>
+	
+	    
+	
+	    </ui:define>
+		
+	</ui:composition>	    
+		  
+</html>

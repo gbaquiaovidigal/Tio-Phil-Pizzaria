@@ -1,0 +1,307 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:h="http://xmlns.jcp.org/jsf/html"
+  xmlns:f="http://xmlns.jcp.org/jsf/core"
+  xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+  xmlns:p="http://primefaces.org/ui"
+  >
+  
+<h:head>
+
+  <title>Tio Phil Delivery</title>
+      <meta charset="UTF-8"/>
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
+      <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
+      <link rel="stylesheet" href="css/estilos.css" />
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Amatic+SC" />
+      
+      <!-- Bootstrap -->
+      <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+      <link href="estilo.css" rel="stylesheet" />
+
+      <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+      <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+      <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+      <![endif]-->
+
+      <style>
+            body,h1,h2,h3,h4,h5,h6 {font-family: "Amatic SC", sans-serif}
+            .menu {display: none}
+            .bgimg {
+                  background-repeat: no-repeat;
+                  background-size: cover;
+                  background-image: url("img/fundo1white.png");
+                  min-height: 90%;
+                  background-attachment: fixed;
+              }
+    
+          </style>
+  
+</h:head>
+
+<h:body class="bgimg">
+<main>
+  
+    <!-- Barra navegação -->
+      <nav class="navbar navbar-default navbar-fixed-top fonteSansHelvetica" >
+          <div class="container">
+        
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle collapsed" 
+                      data-toggle="collapse" data-target="#barra-navegacao">
+                <span class="sr-only">Alternar Menu</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              <a href="index.html" class="navbar-brand">
+                <img src="img/logo.jpg" width="35px" height="40px" class="img-circle img-responsive" /> 
+              </a>
+                
+            </div>
+    
+            <div class="collapse navbar-collapse" id="barra-navegacao">
+    
+              <ul class="nav navbar-nav navbar-right">
+                <li> <a href="zindex.xhtml">Home</a> </li>
+                <li> <a href="zcardapio.xhtml">Cardápio</a> </li>
+                <li> <a href="zsobre.xhtml">Empresa</a> </li>
+    
+                <li class="dropdown"> 
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    Minha Conta <span class="caret"></span>
+                  </a> 
+                  <ul class="dropdown-menu">
+                    <li> <a href="zconta.xhtml">Entrar</a> </li>
+                    <li> <a href="#">Carrinho de Compras</a> </li>
+                  </ul>
+    
+                </li>
+    
+              </ul>
+    
+            </div>
+    
+          </div>
+      </nav> <!--Barra navegação FIM -->
+      <div class="container">
+      
+        <div class="page-header">
+          <br></br>
+          <h1>Minha conta</h1>
+        </div>
+
+        <div class="row fonteSansHelvetica">
+          <div class="col-sm-8" >
+            <h3>Cadastre-se</h3>
+            
+            <h:form>
+
+              <h:messages id ="msg"/>
+              
+              
+              <div class="form-group">
+                <h:outputText value="Login" for="login"/>
+              <h:inputText id="login"  class="form-control" value="#{pessoaController.pessoa.login}"
+                   required="true" requiredMessage="LOGIN obrigatório">
+                  <f:ajax event ="blur" render = "msg"/>
+                  </h:inputText>
+             </div>
+             
+              <div class="form-group">
+                <h:outputText value="Senha" for="senha"/>
+              <h:inputText id="senha"  class="form-control" value="#{pessoaController.pessoa.senha}"
+                   required="true" requiredMessage="Senha obrigatório">
+                  <f:ajax event ="blur" render = "msg"/>
+                  </h:inputText>
+             </div>
+             
+             <div class="form-group">
+                <h:outputText value="Nome" for="nome"/>
+              <h:inputText id="nome"  class="form-control" value="#{pessoaController.pessoa.nome}"
+                   required="true" requiredMessage="NOME obrigatório">
+                  <f:ajax event ="blur" render = "msg"/>
+                  </h:inputText>
+             </div>
+              
+
+<!--
+              <div class="form-group">
+                <h:outputText value="CPF" for="cpf"/>
+              <h:inputText id="cpf"  class="form-control" value="#{pessoaController.pessoa.cpf}"
+                  required="true" requiredMessage="CPF obrigatório">
+					<f:ajax event ="blur" render = "msg"/>
+			</h:inputText>
+             </div> -->
+             
+             
+             <div class="form-group">
+             <h:outputText value="CPF" for="cpf"/>
+				<h:inputText id="cpf" value="#{pessoaController.pessoa.cpf}" validatorMessage="Entre com um CPF valido." class="form-control">
+				<f:validateRegex pattern="([0-9]{2}[\.]?[0-9]{3}[\.]?[0-9]{3}[\/]?[0-9]{4}[-]?[0-9]{2})|([0-9]{3}[\.]?[0-9]{3}[\.]?[0-9]{3}[-]?[0-9]{2})"/>
+				<f:ajax event="blur" render="msg"/>
+			</h:inputText>
+			</div>
+			
+			
+			
+             <div class="form-group">
+               <h:outputText value="Telefone" for="telefone"/>
+              <h:inputText id="telefone"  class="form-control" value="#{pessoaController.pessoa.telefone}" validatorMessage="Entre com um numero de telefone ou celular valido." pt:required="true" >
+              <f:validateRegex pattern="^(\(11\) [9][0-9]{4}-[0-9]{4})|(\(1[2-9]\) [5-9][0-9]{3}-[0-9]{4})|(\([2-9][1-9]\) [5-9][0-9]{3}-[0-9]{4})$"/>
+              <f:ajax event="blur" render="msg"/>
+              </h:inputText>
+                  
+             </div>
+
+              
+              
+       
+       <div class="form-group">
+                <h:outputText value="Logradouro" for="rua"/>
+              <h:inputText id="rua"  class="form-control" value="#{pessoaController.end.rua}"
+                  pt:placeholder="Ex.: Rua Marquês do Paraná" pt:required=""/>
+             </div>
+             
+             <div class="form-group">
+                <h:outputText value="Número" for="numero"/>
+              <h:inputText id="numero"  class="form-control" value="#{pessoaController.end.numero}"
+                  pt:required=""/>
+             </div>
+             
+             <div class="form-group">
+                <h:outputText value="Bairro" for="bairro"/>
+              <h:inputText id="bairro"  class="form-control" value="#{pessoaController.end.bairro}"
+                  pt:placeholder="Ex.: Vila Diamantina" pt:required=""/>
+             </div>
+              
+             <div class="form-group">
+                <h:outputText value="Referência" for="referencia"/>
+              <h:inputText id="referencia"  class="form-control" value="#{pessoaController.end.referencia}"
+                  pt:placeholder="Ex.: Ao lado do Bar do Lu"/>
+             </div>
+             
+             <div class="form-group">
+                <h:outputText value="Cidade" for="cidade"/>
+              <h:inputText id="cidade"  class="form-control" value="#{pessoaController.end.cidade}"
+                  pt:placeholder="Ex.: Jacuí" pt:required=""/>
+             </div>
+             
+         
+           
+           <div class="form-group">
+                <h:outputText value="CEP" for="cep"/>
+              <h:inputText id="cep"  value="#{pessoaController.end.cep}" validatorMessage="Insira um CEP valido." class="form-control">
+                  pt:placeholder="Ex.: 37965-000" pt:required="">
+              <f:validateRegex pattern="^\d{5}[-]?\d{3}$"/>
+              <f:ajax event="blur" render="msg"/>
+              </h:inputText>
+             </div>
+             
+             <div class="form-group">
+                <h:outputText value="E-mail" for="email"/>
+              <h:inputText id="email"  class="form-control" value="#{pessoaController.pessoa.email}"
+                  pt:type="email" pt:placeholder="Ex.: contato@tiophil.com" pt:required=""/>
+             </div>
+              
+
+              
+              <!-- 
+              <div class="form-group">
+                <h:outputText value="Confirme sua Senha" for="csenha"/>
+              <h:inputText id="csenha"  class="form-control" value="#{bean.senha}"
+                  pt:type="password" pt:placeholder="Máximo 25 caracteres" pt:maxlength="25" pt:required=""/>
+              </div>
+               -->
+
+        <!-- 
+        <div class="radio">  
+                  <h:outputText value="Sexo"/>
+          <h:selectOneMenu class="form-control" >
+            <f:selectItem itemValue="Masculino"/>
+            <f:selectItem itemValue="Feminino"/>
+          </h:selectOneMenu>
+        </div>
+         -->
+         
+        <!-- 
+        <div class="checkbox">
+                  <h:label>
+                      <h:input type="checkbox"/> Aceito os termos do serviço.
+                  </h:label>
+                </div> -->
+              
+              <h:commandButton type="submit" class="btn btn-success btn-block" value="Cadastrar" action="#{pessoaController.inserir}"/>
+
+            </h:form>
+            
+            <h:form>
+	<h:dataTable value="#{pesooaController.todosEnderecos}" var="endereco">
+			<h:column>
+				<f:facet name="header">Nome</f:facet>
+				<h:outputText value="#{endereco.rua}"/>
+			</h:column>
+			
+			
+		</h:dataTable>
+		</h:form>
+
+          </div>
+
+          <div class="col-sm-4">
+            <h3>Entrar</h3>
+
+       
+<h:form>
+								<div class="form-group">
+									<h:outputLabel value="Login" for="login"/>
+									<h:inputText id="login" 
+									value="#{loginController.user.login}" 
+									required="true" requiredMessage="Login obrigatório."
+									class="form-control"/>
+									<h:message for="login"/>
+								</div>
+								
+								<div class="form-group">
+									<h:outputLabel value="Senha" for="senha"/>
+									<h:inputText id="senha" 
+									value="#{loginController.user.senha}" 
+									required="true" requiredMessage="Senha obrigatória."
+									class="form-control">
+										<f:passThroughAttribute name="type" value="password"/>
+									</h:inputText>
+									<h:message for="senha"/>
+								</div>
+								
+								<h:commandButton value="Login" class="btn btn-primary btn-block"
+								action="#{loginController.logar}" />
+							</h:form>		
+
+            <br/><br/><br/>
+            <div align="center"><img src="img/logo.jpg" style="width: 300px" class="w3-circle"/></div>
+            
+          </div>
+
+        </div>
+
+    </div> 
+
+    <br></br>
+
+      <!-- Footer -->
+      <footer class="w3-center rodape">
+        <h3>Copyright © 2018 Baquião and Físico</h3>
+      </footer>
+
+      <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+      <!-- Include all compiled plugins (below), or include individual files as needed -->
+      <script src="bootstrap/js/bootstrap.min.js"></script>
+  
+</main>
+</h:body>
+</html>

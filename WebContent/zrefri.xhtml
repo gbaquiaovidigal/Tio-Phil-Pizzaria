@@ -1,0 +1,185 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	>
+	
+		<h:head>
+		    
+		      <title>Tio Phil Delivery - Refrigerantes</title>
+		      <meta charset="UTF-8"/>
+		      <meta name="viewport" content="width=device-width, initial-scale=1"/>
+		      <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"/>
+		      <link rel="stylesheet" href="css/estilos.css"/>
+		      <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Amatic+SC"/>
+		      
+		      <!-- Bootstrap -->
+		      <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
+		      <link href="estilo.css" rel="stylesheet"/>
+		
+		      <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+		      <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+		      <!--[if lt IE 9]>
+		        <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+		        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+		      <![endif]-->
+		
+		      <style>
+		        body,h1,h2,h3,h4,h5,h6 {font-family: "Amatic SC", sans-serif}
+		        .menu {display: none}
+		        .bgimg {
+		              background-repeat: no-repeat;
+		              background-size: cover;
+		              background-image: url("img/pizza1white.png");
+		              background-attachment: fixed; 
+		              min-height: 90%;
+		             
+		          }
+		
+		      </style>
+		
+		 </h:head>
+		
+		<body class="fonteSansHelvetica bgimg">
+		
+		    <!-- Barra navegação -->
+		    <nav class="navbar navbar-default">
+		      <div class="container">
+		        
+		        <div class="navbar-header">
+		          <button type="button" class="navbar-toggle collapsed" 
+		                  data-toggle="collapse" data-target="#barra-navegacao">
+		            <span class="sr-only">Alternar Menu</span>
+		            <span class="icon-bar"></span>
+		            <span class="icon-bar"></span>
+		            <span class="icon-bar"></span>
+		          </button>
+		          <a href="index.html" class="navbar-brand">
+		            <img src="img/logo.jpg" width="35px" height="40px" class="img-circle img-responsive" /> 
+		          </a>
+		            
+		        </div>
+		
+		        <div class="collapse navbar-collapse" id="barra-navegacao">
+		
+		          <ul class="nav navbar-nav navbar-right">
+		            <li> <a href="zindex.xhtml">Home</a> </li>
+		            <li> <a href="zsobre.xhtml">Empresa</a> </li>
+		            <li> <a href="zclientes.xhtml">Clientes</a> </li>
+		
+		            <li class="dropdown"> 
+		              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+		                Produtos <span class="caret"></span>
+		              </a> 
+		              <ul class="dropdown-menu">
+		                <li> <a href="zpizzas.xhtml">Pizzas</a> </li>
+		                <li> <a href="zingredientes.xhtml">Ingredientes</a> </li>
+		                <li> <a href="zrefri.xhtml">Refrigerantes</a> </li>
+		              </ul>
+		
+		            </li>
+		
+		            <li class="dropdown"> 
+		              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+		                Minha Conta <span class="caret"></span>
+		              </a> 
+		              <ul class="dropdown-menu">
+		                <li> <a href="#">Editar</a> </li>
+		                <li> <a href="#">Sair</a> </li>
+		              </ul>
+		
+		            </li>
+		
+		          </ul>
+		
+		        </div>
+		
+		      </div>
+		    </nav> <!--Barra navegação FIM -->
+		    
+		    <div class="container">
+		      
+		      <div class="page-header">
+		        <h1>Inserir Refrigerante</h1>
+		      </div>
+		
+		      <h:form>
+		              
+		              <div class="form-group">         
+              			<h:outputText value="Refrigerante" for="nome"/>
+             			<h:inputText id="nome" class="form-control" value="#{refriController.refri.nome}" pt:required=""/>
+             			
+             			<h:outputText value="Tamanho" for="tamanho"/>
+             			<h:inputText id="tamanho" class="form-control" value="#{refriController.refri.tamanho}" pt:required=""/>
+             			
+             			<h:outputText value="Preço" for="preco"/>
+             			<h:inputText id="preco" class="form-control" value="#{refriController.refri.preco}" pt:required=""/>
+             			
+             			<br/>
+				        <h:commandButton type="submit" class="btn btn-success btn-block" value="Cadastrar Refrigerante" action="#{refriController.inserir}"/>
+		              </div>
+		              
+		      </h:form>
+   
+		
+		      <div class="page-header"></div>  <!-- Traço -->
+		
+		      <h2>Refrigerantes Cadastrados:</h2>
+			 <h:form>
+			    <h:dataTable value = "#{refriController.todosRefris}" var="refri">
+				
+			    <h:column>
+			    <f:facet name="header">Nome </f:facet>
+			    <h:outputText value="#{refri.nome}"/>
+			    </h:column>
+			    
+			    <h:column>
+			    <f:facet name="header">Tamanho </f:facet>
+			    <h:outputText value="#{refri.tamanho}"/>
+			    </h:column>
+			    
+			    <h:column>
+			    <f:facet name="header">Preço </f:facet>
+			    <h:outputText value="#{refri.preco}"/>
+			    </h:column>
+
+
+			    <h:column>
+			    <f:facet name="header">Alterar</f:facet>
+			    <h:commandButton type="submit" class="btn btn-success btn-sm" value="Alterar Refrigerante" 
+			    			action="#{refriController.carregar(refri)}">
+		        </h:commandButton>
+			   	</h:column>
+
+			    <h:column>
+			    <f:facet name="header">Remover</f:facet>
+			    <h:commandButton type="submit" class="btn btn-danger btn-sm" value="Remover Refrigerante" 
+			    			action="#{refriController.remover(refri)}">
+		        </h:commandButton>
+			    </h:column>
+			    	   
+			    
+			    </h:dataTable>
+		      </h:form>
+
+		    </div> 
+		
+		    <br/>
+		    
+		    
+		    <!-- Footer -->
+		      <footer class="rodape w3-center">
+		        <h3>Copyright © 2018 Baquião and Físico</h3>
+		      </footer>
+		
+		    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+		    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+		    <!-- Include all compiled plugins (below), or include individual files as needed -->
+		    <script src="bootstrap/js/bootstrap.min.js"></script>
+		  </body>
+		  
+</html>
+

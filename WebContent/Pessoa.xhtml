@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	>
+	
+	
+	
+	
+	
+	
+	<h:body>
+	<h1>Cadastro de Pessoa</h1>
+	
+	<h:form>
+	
+	        <fieldset>
+			<legend>Login</legend>
+			<h:panelGrid>
+			    <h:outputText value="Login" for="login"/>
+				<h:inputText id="login" value="#{pessoaController.pessoa.login}"/>
+				<h:outputText value="Senha" for="senha"/>
+				<h:inputText id="senha" value="#{pessoaController.pessoa.senha}"/>
+					
+			</h:panelGrid>
+		   </fieldset>
+		<fieldset>
+			<legend>Dados</legend>
+			<h:panelGrid>
+				<h:outputText value="Nome" for="nome"/>
+				<h:inputText id="nome" value="#{pessoaController.pessoa.nome}"/>
+				
+				<h:outputText value="Cpf" for="cpf"/>
+				<h:inputText id="cpf" value="#{pessoaController.pessoa.cpf}"/>
+				
+				<h:outputText value="Email" for="email"/>
+				<h:inputText id="email" value="#{pessoaController.pessoa.email}"/>
+				
+				<h:outputText value="Tel" for="telefone"/>
+				<h:inputText id="telefone" value="#{pessoaController.pessoa.telefone}"/>
+				
+			
+				
+				<h:outputText value="Rua" for="rua"/>
+				<h:inputText id="rua" value="#{pessoaController.end.rua}"/>
+				
+				<h:outputText value="Bairro" for="bairro"/>
+				<h:inputText id="bairro" value="#{pessoaController.end.bairro}"/>
+				
+				<h:outputText value="Numero" for="numero"/>
+				<h:inputText id="numero" value="#{pessoaController.end.numero}"/>
+				
+				<h:outputText value="Referencia" for="referencia"/>
+				<h:inputText id="referencia" value="#{pessoaController.end.referencia}"/>
+				
+				<h:outputText value="Cidade" for="cidade"/>
+				<h:inputText id="cidade" value="#{pessoaController.end.cidade}"/>
+				
+				<h:outputText value="CEP" for="cep"/>
+				<h:inputText id="cep" value="#{pessoaController.end.cep}"/>
+				
+				<h:outputText value="Estado" for="estado"/>
+				<h:inputText id="estado" value="#{pessoaController.end.estado}"/>
+				
+				
+				
+				<h:commandButton value="Inserir" action="#{pessoaController.inserir}"/>
+				
+				<h:outputText value="Busca" for="busca"/>
+				<h:inputText id="busca" value="#{pessoaController.busca}"/>
+				
+				<h:commandButton value="Busca" action="#{pessoaController.buscar()}"/>
+				
+				
+				
+				
+			</h:panelGrid>
+		</fieldset>
+	</h:form>
+	
+	<h:form>
+	<h:dataTable value="#{pessoaController.todasPessoas}" var="pessoa">
+			<h:column>
+				<f:facet name="header">Nome</f:facet>
+				<h:outputText value="#{pessoa.nome}"/>
+				
+				
+			</h:column>
+			
+		</h:dataTable>
+		</h:form>
+	
+	
+	
+	
+</h:body>
+
+</html>
